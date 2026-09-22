@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediFlow Pharma | Supply Chain Intelligence & Executive Diagnostic Report</title>
+  <meta name="description" content="Comprehensive executive supply chain diagnostic and management report for MediFlow Pharma covering demand vs fulfillment, supply-risk rankings, backorders, and strategic recommendations.">
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Chart.js CDN for High-Fidelity Interactive Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Custom Design System Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation -->
+  <nav class="navbar" id="main-nav">
+    <div class="nav-container">
+      <a href="#title-page" class="brand-wrapper" id="brand-home-link">
+        <div class="brand-icon">M</div>
+        <div class="brand-text">
+          <h1>MediFlow Pharma</h1>
+          <p>Executive Intelligence Report</p>
+        </div>
+      </a>
+      
+      <ul class="nav-menu" id="primary-navigation">
+        <li><a href="#diagnosis" class="nav-link">Demand vs Fulfilment</a></li>
+        <li><a href="#supply-risk" class="nav-link">Supply-Risk Ranking</a></li>
+        <li><a href="#backorders-fillrate" class="nav-link">Backorders & Fill-Rate</a></li>
+        <li><a href="#external-context" class="nav-link">Public Health Context</a></li>
+        <li><a href="#recommendations" class="nav-link">Strategic Actions</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button class="btn btn-icon" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Dark/Light Mode">
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="btn btn-primary" id="print-report-btn">
+          <i class="fas fa-file-pdf"></i> Export Briefing
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" id="main-content">
+
+    <!-- ====================================================================
+         SECTION 1: TITLE PAGE / HERO & GROUP BRANDING
+         ==================================================================== -->
+    <section class="hero-section" id="title-page">
+      <div class="hero-badge-row">
+        <span class="badge badge-live">Supabase Live Connection Verified</span>
+        <span class="badge badge-muted"><i class="fas fa-database"></i> Project: Mediflow_Pharma</span>
+        <span class="badge badge-muted"><i class="fas fa-calendar-alt"></i> 20-Month Audit: Jan 2025 – Aug 2026</span>
+        <span class="badge badge-muted"><i class="fas fa-microchip"></i> Agentic AI Group Research</span>
+      </div>
+
+      <h1 class="hero-title">
+        Supply Chain Diagnostics &amp; <span>Resilience Roadmap</span>
+      </h1>
+      <p class="hero-subtitle">
+        An executive investigation into pharmaceutical demand divergence, localized stockout bottlenecks, supplier lead-time vulnerabilities, and the seasonal disease nexus across Indian distribution hubs.
+      </p>
+
+      <!-- Group Members Card Grid -->
+      <div class="group-roster-box" id="group-roster-section">
+        <div class="roster-header">
+          <div class="roster-title">
+            <i class="fas fa-users-cog"></i> Project Working Group &amp; Authors
+          </div>
+          <span class="badge badge-muted">
+            <i class="fas fa-pencil-alt"></i> Roll numbers editable (Auto-saves locally)
+          </span>
+        </div>
+
+        <div class="roster-grid">
+          <!-- Member 1 -->
+          <div class="member-card">
+            <div class="member-avatar">TC</div>
+            <div class="member-info">
+              <h4>Teesha Chhabria</h4>
+              <div class="member-roll">
+                Roll No: <input type="text" class="roll-input" id="roll-1" value="22BCE1001" title="Click to edit Roll Number">
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="member-card">
+            <div class="member-avatar">SM</div>
+            <div class="member-info">
+              <h4>Sakshi Makhija</h4>
+              <div class="member-roll">
+                Roll No: <input type="text" class="roll-input" id="roll-2" value="22BCE1002" title="Click to edit Roll Number">
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 3 -->
+          <div class="member-card">
+            <div class="member-avatar">SS</div>
+            <div class="member-info">
+              <h4>Shrusti Shah</h4>
+              <div class="member-roll">
+                Roll No: <input type="text" class="roll-input" id="roll-3" value="22BCE1003" title="Click to edit Roll Number">
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 4 -->
+          <div class="member-card">
+            <div class="member-avatar">AK</div>
+            <div class="member-info">
+              <h4>Anand Kandavalli</h4>
+              <div class="member-roll">
+                Roll No: <input type="text" class="roll-input" id="roll-4" value="22BCE1004" title="Click to edit Roll Number">
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 5 -->
+          <div class="member-card">
+            <div class="member-avatar">SK</div>
+            <div class="member-info">
+              <h4>Shriya Kabra</h4>
+              <div class="member-roll">
+                Roll No: <input type="text" class="roll-input" id="roll-5" value="22BCE1005" title="Click to edit Roll Number">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Executive KPI Ribbon -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-label">Total Requested</span>
+            <div class="kpi-icon"><i class="fas fa-boxes-stacked"></i></div>
+          </div>
+          <div class="kpi-value">54,059</div>
+          <div class="kpi-footnote">8,734 sales orders analyzed</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-label">Total Fulfilled</span>
+            <div class="kpi-icon"><i class="fas fa-truck-ramp-box"></i></div>
+          </div>
+          <div class="kpi-value">51,799</div>
+          <div class="kpi-footnote positive"><i class="fas fa-check-circle"></i> 95.82% Network Fill Rate</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-label">Total Backorders</span>
+            <div class="kpi-icon"><i class="fas fa-triangle-exclamation"></i></div>
+          </div>
+          <div class="kpi-value">2,260</div>
+          <div class="kpi-footnote warning"><i class="fas fa-arrow-trend-up"></i> 4.18% Unfulfilled Demand</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-label">Peak Month Crisis</span>
+            <div class="kpi-icon"><i class="fas fa-fire"></i></div>
+          </div>
+          <div class="kpi-value">412</div>
+          <div class="kpi-footnote danger"><i class="fas fa-circle-exclamation"></i> Sep 2025 (9.92% backorder rate)</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-label">Critical Vulnerability</span>
+            <div class="kpi-icon"><i class="fas fa-map-pin"></i></div>
+          </div>
+          <div class="kpi-value">Pune &amp; Nagpur</div>
+          <div class="kpi-footnote danger"><i class="fas fa-shield-virus"></i> Fill rates plummeted to 76.6%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 2: DEMAND VS FULFILMENT DIAGNOSIS (A)
+         ==================================================================== -->
+    <section class="section" id="diagnosis">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2><span class="section-tag">Section A</span> Demand vs Fulfilment Diagnosis</h2>
+          <p class="section-desc">Tracking order volume divergence across categories and uncovering the monsoon demand acceleration.</p>
+        </div>
+        <div class="section-controls">
+          <div class="tab-group" id="categoryTabs">
+            <button class="tab-btn active" data-cat="All">All Categories</button>
+            <button class="tab-btn" data-cat="Hydration">Hydration</button>
+            <button class="tab-btn" data-cat="Pain & Fever">Pain &amp; Fever</button>
+            <button class="tab-btn" data-cat="Respiratory">Respiratory</button>
+            <button class="tab-btn" data-cat="Pain Care">Pain Care</button>
+            <button class="tab-btn" data-cat="Wellness">Wellness</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Monthly Trajectory: Requested vs Fulfilled Units</span>
+          <span class="badge badge-live">Interactive Timeline</span>
+        </div>
+        <p class="card-subtitle">
+          Hover over data points to inspect monthly requested units, fulfilled volumes, backorders, and fill-rate percentages.
+        </p>
+        <div class="chart-wrapper">
+          <canvas id="demandChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Deep Dive Grid -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Category Demand Jump (Normal vs Surge Period)</div>
+          <p class="card-subtitle">Average monthly requested units during normal 18 months vs August–September 2025 surge.</p>
+          <div class="chart-wrapper" style="height: 280px;">
+            <canvas id="categorySpikeChart"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">The Anatomy of the Divergence</div>
+          <p class="card-subtitle">Where and why demand broke through inventory safety buffers.</p>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Therapeutic Category</th>
+                  <th class="numeric">Normal Mo.</th>
+                  <th class="numeric">Surge Mo.</th>
+                  <th class="numeric">% Jump</th>
+                  <th>Core Impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Hydration</strong></td>
+                  <td class="numeric">740.9</td>
+                  <td class="numeric" style="color: var(--accent-rose); font-weight: 700;">1,421.5</td>
+                  <td class="numeric" style="color: var(--accent-rose); font-weight: 800;">+91.8%</td>
+                  <td><span class="badge badge-live" style="background: rgba(244,63,94,0.15); color: #f43f5e;">803 Backorders</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Pain &amp; Fever</strong></td>
+                  <td class="numeric">356.8</td>
+                  <td class="numeric" style="color: var(--accent-amber); font-weight: 700;">613.5</td>
+                  <td class="numeric" style="color: var(--accent-amber); font-weight: 800;">+72.0%</td>
+                  <td><span class="badge badge-muted">381 Backorders</span></td>
+                </tr>
+                <tr>
+                  <td>Respiratory</td>
+                  <td class="numeric">347.5</td>
+                  <td class="numeric">478.0</td>
+                  <td class="numeric">+37.6%</td>
+                  <td><span class="badge badge-muted">262 Backorders</span></td>
+                </tr>
+                <tr>
+                  <td>Pain Care</td>
+                  <td class="numeric">372.5</td>
+                  <td class="numeric">441.0</td>
+                  <td class="numeric">+18.4%</td>
+                  <td><span class="badge badge-muted">280 Backorders</span></td>
+                </tr>
+                <tr>
+                  <td>Wellness</td>
+                  <td class="numeric">369.8</td>
+                  <td class="numeric">432.5</td>
+                  <td class="numeric">+17.0%</td>
+                  <td><span class="badge badge-muted">257 Backorders</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 3: SUPPLY-RISK RANKING (B)
+         ==================================================================== -->
+    <section class="section" id="supply-risk">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2><span class="section-tag">Section B</span> Warehouse/Product Supply-Risk Ranking</h2>
+          <p class="section-desc">Identifying extreme vulnerability combinations: low inventory cover colliding with lengthy supplier lead times.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Top 10 Riskiest Warehouse / Product Combinations</span>
+          <span class="badge badge-muted"><i class="fas fa-filter"></i> Ranked by Days-of-Cover vs Supplier Lead Time</span>
+        </div>
+        <p class="card-subtitle">
+          When supplier lead times are nearly double the available days of cover (Risk Ratio &gt; 1.6x), any unexpected order spike causes instant stockouts.
+        </p>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="numeric">Rank</th>
+                <th>Warehouse (Location)</th>
+                <th>Product SKU &amp; Name</th>
+                <th>Category</th>
+                <th class="numeric">Avg Days Cover</th>
+                <th class="numeric">Avg Lead Time</th>
+                <th>Lead Time to Cover Ratio</th>
+              </tr>
+            </thead>
+            <tbody id="riskTableBody">
+              <!-- Dynamically rendered via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="alert-card critical">
+        <div class="alert-header">
+          <i class="fas fa-exclamation-triangle" style="font-size: 1.3rem; color: var(--accent-rose);"></i>
+          <h3>Key Finding: Geographic Cluster of Supply Risk</h3>
+        </div>
+        <div class="alert-content">
+          <strong>100% of the top 10 riskiest combinations</strong> are located in just two warehouses: <strong>Pune (`W01`)</strong> and <strong>Nagpur (`W03`)</strong>. Across these nodes, average on-hand stock covers only <strong>5.06 to 5.46 days</strong>, while regional suppliers require <strong>9.0 to 9.7 days</strong> to deliver replenishments. This creates an unbridgeable 4-day stockout exposure window whenever weekly orders accelerate.
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 4: BACKORDER, FILL-RATE & CAPACITY ANALYSIS (C & D)
+         ==================================================================== -->
+    <section class="section" id="backorders-fillrate">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2><span class="section-tag">Section C &amp; D</span> Backorder &amp; Fill-Rate Diagnostic</h2>
+          <p class="section-desc">Monthly backorder spike dynamics, warehouse fill rate matrix, and the facility utilization paradox.</p>
+        </div>
+      </div>
+
+      <!-- Backorders Timeline Bar Chart -->
+      <div class="card">
+        <div class="card-title">
+          <span>Total Backordered Units by Month (Network Overview)</span>
+          <span class="badge badge-muted">August &amp; September 2025 Shock</span>
+        </div>
+        <p class="card-subtitle">
+          Baseline backorders average ~88 units/month (3.4%). In August 2025 backorders surged to 264 units (7.51%), and peaked in September 2025 at 412 units (9.92%).
+        </p>
+        <div class="chart-wrapper" style="height: 320px;">
+          <canvas id="backorderChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Warehouse Fill Rate Heatmap Table -->
+      <div class="card">
+        <div class="card-title">
+          <span>Warehouse Monthly Fill-Rate Matrix (%)</span>
+          <span class="badge badge-live">120 Facility-Month Records</span>
+        </div>
+        <p class="card-subtitle">
+          Target Service Level: &ge; 95.0%. Cells highlighted in crimson (🚨) represent critical service level failures below 90.0%.
+        </p>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th style="text-align: center;">W01 (Pune)</th>
+                <th style="text-align: center;">W02 (Mumbai)</th>
+                <th style="text-align: center;">W03 (Nagpur)</th>
+                <th style="text-align: center;">W04 (Nashik)</th>
+                <th style="text-align: center;">W05 (Ahmedabad)</th>
+                <th style="text-align: center;">W06 (Hyderabad)</th>
+              </tr>
+            </thead>
+            <tbody id="matrixBody">
+              <!-- Dynamically rendered via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Capacity Paradox Card -->
+      <div class="card" style="background: linear-gradient(145deg, rgba(28,45,96,0.6) 0%, rgba(13,23,51,0.8) 100%);">
+        <div class="card-title">The Facility Utilization Disconnect</div>
+        <p class="card-subtitle">Are low warehouse sales caused by facility capacity limits or incoming market demand?</p>
+        <div class="grid-3">
+          <div style="padding: 1rem; border-left: 3px solid var(--accent-cyan); background: rgba(0,0,0,0.2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+            <h4 style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.4rem;">Mumbai (W02) Capacity Paradox</h4>
+            <div style="font-size: 1.8rem; font-family: var(--font-heading); font-weight: 800; color: var(--accent-cyan);">2.4%</div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem;">
+              18,000 monthly unit capacity vs ~434 units fulfilled/month. Enormous unutilized infrastructure sitting idle.
+            </p>
+          </div>
+          <div style="padding: 1rem; border-left: 3px solid var(--accent-rose); background: rgba(0,0,0,0.2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+            <h4 style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.4rem;">Pune &amp; Nagpur Spike Impact</h4>
+            <div style="font-size: 1.8rem; font-family: var(--font-heading); font-weight: 800; color: var(--accent-rose);">467 Units</div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem;">
+              Pune and Nagpur accounted for 69.1% of all backorders in Aug–Sep 2025 due to lack of local inventory buffers.
+            </p>
+          </div>
+          <div style="padding: 1rem; border-left: 3px solid var(--accent-teal); background: rgba(0,0,0,0.2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+            <h4 style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.4rem;">Network-Wide Capacity</h4>
+            <div style="font-size: 1.8rem; font-family: var(--font-heading); font-weight: 800; color: var(--accent-teal);">68,000 / mo</div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem;">
+              Total network capacity across 6 warehouses is 68,000 units/mo, but average demand is ~2,700 units/mo (~4.0% utilization).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 5: EXTERNAL PUBLIC-HEALTH CONTEXT (E)
+         ==================================================================== -->
+    <section class="section" id="external-context">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2><span class="section-tag">Section E</span> External Public-Health Context</h2>
+          <p class="section-desc">Epidemiological patterns, monsoon disease dynamics, and the correlation with pharmaceutical demand.</p>
+        </div>
+      </div>
+
+      <div class="news-dossier-grid">
+        <div class="dossier-item">
+          <div class="dossier-meta"><i class="fas fa-cloud-showers-heavy"></i> Monsoon Precipitation &amp; Flooding</div>
+          <div class="dossier-title">Late-Monsoon Inundation (July–August 2025)</div>
+          <div class="dossier-body">
+            Maharashtra experienced severe rainfall bursts and urban waterlogging in late July and August 2025. Contaminated municipal water supplies and urban drainage overflow triggered acute public health concerns across western Maharashtra and the Vidarbha region.
+          </div>
+        </div>
+
+        <div class="dossier-item">
+          <div class="dossier-meta"><i class="fas fa-bacteria"></i> Waterborne Illness Spike</div>
+          <div class="dossier-title">368,000+ Acute Diarrheal Cases Reported</div>
+          <div class="dossier-body">
+            State health department surveillance recorded a three-fold increase in clustered waterborne outbreaks between Q1 and August 2025 (rising from 8 to 27 active clusters). Clinical management guidelines dictate aggressive fluid and electrolyte replacement through <strong>Oral Rehydration Salts (ORS)</strong>.
+          </div>
+        </div>
+
+        <div class="dossier-item">
+          <div class="dossier-meta"><i class="fas fa-mosquito"></i> Vector-Borne Transmission</div>
+          <div class="dossier-title">Dengue &amp; Viral Fever Surge in Pune &amp; Mumbai</div>
+          <div class="dossier-body">
+            Municipal health bodies in Pune (PMC) and Mumbai (BMC) reported sharp surges in dengue, chikungunya, and non-specific viral fevers throughout August and September. Fever management relies strictly on <strong>Paracetamol</strong> (avoiding NSAIDs to mitigate hemorrhage risks).
+          </div>
+        </div>
+      </div>
+
+      <!-- Mandatory Causality Disclaimer Card -->
+      <div class="alert-card" style="border-left: 5px solid var(--accent-amber);">
+        <div class="alert-header">
+          <i class="fas fa-balance-scale" style="font-size: 1.4rem; color: var(--accent-amber);"></i>
+          <h3>Analytical Governance: A Timing Match Is Not Proof of Cause</h3>
+        </div>
+        <div class="alert-content">
+          <p style="margin-bottom: 0.8rem;">
+            While the temporal (August–September 2025), geographic (Maharashtra cities), and categorical (Hydration + Antipyretics) alignment between reported epidemiological outbreaks and Mediflow order spikes is exceptionally strong, <strong>correlation does not establish definitive causation</strong>.
+          </p>
+          <p>
+            Other unmeasured commercial and supply chain variables could produce an identical pattern:
+          </p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-muted);">
+            <li>Wholesale distributor trade schemes or pre-monsoon volume discount stocking promotions.</li>
+            <li>Institutional tenders or state procurement orders fulfilled through commercial channels.</li>
+            <li>Retail pharmacy automated restocking algorithms reacting to localized sales spikes and amplifying replenishment batches (the bullwhip effect).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 6: STRATEGIC RECOMMENDATIONS & WHAT-IF SIMULATOR (F)
+         ==================================================================== -->
+    <section class="section" id="recommendations">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2><span class="section-tag">Section F</span> Strategic Recommendations</h2>
+          <p class="section-desc">Four data-traced operational actions to eliminate stockouts and fortify future surge resilience.</p>
+        </div>
+      </div>
+
+      <!-- Action Cards Grid -->
+      <div class="rec-grid">
+        <!-- Rec 1 -->
+        <div class="rec-card">
+          <div class="rec-badge-row">
+            <div class="rec-number">1</div>
+            <span class="badge badge-live">Safety Stock Policy</span>
+          </div>
+          <div class="rec-title">Recalibrate Safety Stock in Pune &amp; Nagpur from 5 to 14 Days</div>
+          <div class="rec-trace">
+            <strong>Data Trace:</strong> In Section B, top risk combinations had only <strong>5.06–5.46 days of cover</strong> against <strong>9.0–9.7 days lead time</strong>. In Section D, this caused fill rates to collapse to <strong>76.64% in Nagpur</strong> and <strong>83.27% in Pune</strong>.
+          </div>
+          <div class="rec-action">
+            Effective July 1st annually, adjust the inventory policy for the 6 high-risk SKUs (`P01`–`P05`, `P14`) in Pune and Nagpur, lifting target on-hand stock from ~150 units to <strong>14 days of forward cover (~400 units)</strong> so buffer stock comfortably exceeds supplier replenishment cycles.
+          </div>
+          <div class="rec-footer">
+            <span>Owner: VP Supply Chain</span>
+            <span>Target: Complete by Q2</span>
+          </div>
+        </div>
+
+        <!-- Rec 2 -->
+        <div class="rec-card">
+          <div class="rec-badge-row">
+            <div class="rec-number">2</div>
+            <span class="badge badge-live">Network Optimization</span>
+          </div>
+          <div class="rec-title">Establish Mumbai (W02) as a Regional Overflow Buffer Hub</div>
+          <div class="rec-trace">
+            <strong>Data Trace:</strong> Mumbai has <strong>18,000 monthly capacity</strong> but operates at only <strong>2.4% utilization</strong> (434 units/mo) and maintained a <strong>95.3% fill rate</strong> while neighboring Pune suffered 211 backorders.
+          </div>
+          <div class="rec-action">
+            Pre-position <strong>1,000 units of Hydration</strong> and <strong>500 units of Pain &amp; Fever</strong> in Mumbai by late July. Create an expedited 24-hour inter-warehouse transfer corridor from Mumbai to Pune (only 150 km) to absorb sudden regional demand shocks.
+          </div>
+          <div class="rec-footer">
+            <span>Owner: Logistics Director</span>
+            <span>Target: July 15 Go-Live</span>
+          </div>
+        </div>
+
+        <!-- Rec 3 -->
+        <div class="rec-card">
+          <div class="rec-badge-row">
+            <div class="rec-number">3</div>
+            <span class="badge badge-live">Supplier SLAs</span>
+          </div>
+          <div class="rec-title">Enforce Expedited 4–6 Day Supplier Lead Times During Surge Months</div>
+          <div class="rec-trace">
+            <strong>Data Trace:</strong> Supplier lead times averaged <strong>9.0 to 9.7 days</strong> for high-risk SKUs in B, creating a severe 1.8x risk ratio. Domestic suppliers in the database demonstrate capability down to <strong>4.0 days</strong>.
+          </div>
+          <div class="rec-action">
+            Contract seasonal supplier SLAs for July 15 &ndash; September 30 requiring guaranteed delivery within <strong>4 to 6 business days</strong>. Pre-qualify secondary regional manufacturers in Maharashtra to handle surge overflow orders.
+          </div>
+          <div class="rec-footer">
+            <span>Owner: Head of Procurement</span>
+            <span>Target: Contract Sign-Off</span>
+          </div>
+        </div>
+
+        <!-- Rec 4 -->
+        <div class="rec-card">
+          <div class="rec-badge-row">
+            <div class="rec-number">4</div>
+            <span class="badge badge-live">Demand Sensing</span>
+          </div>
+          <div class="rec-title">Deploy Automated +30% Order Run-Rate Early-Warning Triggers</div>
+          <div class="rec-trace">
+            <strong>Data Trace:</strong> In Section A, August Hydration demand accelerated by <strong>+81.4% MoM (1,304 units)</strong>, yet reorder delays caused the peak crisis in September (412 backorders).
+          </div>
+          <div class="rec-action">
+            Implement demand-sensing alerts in the ERP: if rolling weekly order run-rate in August exceeds baseline by <strong>&ge; 30%</strong>, automated replenishment triggers will immediately generate production orders across all 4 Maharashtra facilities.
+          </div>
+          <div class="rec-footer">
+            <span>Owner: IT &amp; S&amp;OP Lead</span>
+            <span>Target: ERP Integration</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive What-If Scenario Simulator -->
+      <div class="simulator-box" id="simulator-section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3 style="font-size: 1.4rem; font-family: var(--font-heading); font-weight: 800; color: #ffffff;">
+              <i class="fas fa-sliders" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i>
+              Interactive Supply Resilience Simulator
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Simulate the impact of modifying safety stock days, supplier lead times, and activating the Mumbai overflow hub during the August–September surge.
+            </p>
+          </div>
+          <span class="badge badge-live">Dynamic Scenario Engine</span>
+        </div>
+
+        <div class="sim-grid">
+          <div class="sim-controls">
+            <!-- Slider 1 -->
+            <div class="control-item">
+              <label for="simBufferDays">
+                <span>Target Safety Stock (Days of Cover):</span>
+                <span class="val" id="simBufferVal">14 Days</span>
+              </label>
+              <input type="range" class="range-slider" id="simBufferDays" min="5" max="21" step="1" value="14">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-subtle); margin-top: 4px;">
+                <span>5 Days (Crisis Baseline)</span>
+                <span>14 Days (Recommended)</span>
+                <span>21 Days (Heavy Stock)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2 -->
+            <div class="control-item">
+              <label for="simLeadDays">
+                <span>Supplier Replenishment SLA (Lead Time):</span>
+                <span class="val" id="simLeadVal">5 Days</span>
+              </label>
+              <input type="range" class="range-slider" id="simLeadDays" min="4" max="14" step="1" value="5">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-subtle); margin-top: 4px;">
+                <span>4 Days (Fast Domestic)</span>
+                <span>6 Days (Target SLA)</span>
+                <span>14 Days (Delayed Regional)</span>
+              </div>
+            </div>
+
+            <!-- Toggle -->
+            <div class="control-item" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: rgba(0,0,0,0.25); border-radius: var(--radius-md);">
+              <div>
+                <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-main);">Mumbai (W02) Cross-Dock Hub</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Enable 24-hr emergency stock transfers</div>
+              </div>
+              <label class="switch" style="position: relative; display: inline-block; width: 48px; height: 26px;">
+                <input type="checkbox" id="simHubToggle" checked style="opacity: 0; width: 0; height: 0;">
+                <span class="slider round" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--accent-cyan); border-radius: 34px; transition: .4s;"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Simulation Output Metrics -->
+          <div class="sim-results">
+            <div class="sim-metric">
+              <span class="sim-metric-label">Estimated Backorder Reduction:</span>
+              <span class="sim-metric-val" id="simReductionPct" style="color: var(--accent-teal);">-88%</span>
+            </div>
+            <div class="sim-metric">
+              <span class="sim-metric-label">Preserved Unfulfilled Units:</span>
+              <span class="sim-metric-val" id="simPreventedUnits" style="color: var(--text-main);">595 Units</span>
+            </div>
+            <div class="sim-metric">
+              <span class="sim-metric-label">Simulated Network Fill Rate:</span>
+              <span class="sim-metric-val" id="simFillRateRecovery" style="color: var(--accent-emerald);">97.2%</span>
+            </div>
+            <div class="sim-metric">
+              <span class="sim-metric-label">Estimated Revenue Protected:</span>
+              <span class="sim-metric-val" id="simSavedRevenue" style="color: var(--accent-cyan);">₹68,425</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-creds">
+        <p><strong>MediFlow Pharma Supply Chain Intelligence Project</strong></p>
+        <p style="font-size: 0.82rem; color: var(--text-subtle);">
+          Authors: Teesha Chhabria &bull; Sakshi Makhija &bull; Shrusti Shah &bull; Anand Kandavalli &bull; Shriya Kabra
+        </p>
+      </div>
+      <div>
+        <span class="badge badge-muted"><i class="fas fa-shield-alt"></i> Academic &amp; Executive Distribution</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic Script -->
+  <script src="app.js"></script>
+</body>
+</html>
