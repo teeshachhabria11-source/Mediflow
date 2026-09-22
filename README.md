@@ -4,12 +4,8 @@ An interactive, responsive management report website created for the **MediFlow 
 
 ---
 
-## 👥 Authors & Group Members
+## 👥 Author
 - **Teesha Chhabria**
-- **Sakshi Makhija**
-- **Shrusti Shah**
-- **Anand Kandavalli**
-- **Shriya Kabra**
 
 *Note: Roll numbers can be customized directly in the website interface and are automatically saved to `localStorage`.*
 
